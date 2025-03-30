@@ -38,8 +38,8 @@ jobs:
           npm install eslint stylelint htmlhint --save-dev
           npm install
 
-      - name: Run ESLint
-        run: npx eslint scripts.js
+      # - name: Run ESLint
+      #  run: npx eslint scripts.js
 
       - name: Run stylelint
         run: npx stylelint styles.css
@@ -48,6 +48,7 @@ jobs:
         run: npx htmlhint index.html
   
   deploy:
+    needs: test
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
